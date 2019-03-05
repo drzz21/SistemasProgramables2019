@@ -19,6 +19,7 @@ int led = 0;
 
 int btnMinLast = 0;
 int btnHourLast = 0;
+int btnActiva = 0;
 
 int btnMinHLast = 0;
 int btnHourHLast = 0;
@@ -29,6 +30,9 @@ int btnMilitar = 0;
 int btnPosponer = 0;
 
 int numberAlarm = 1;
+
+int alarma1activada = 1;
+int alarma2activada = 1;
 
 bool militar = false;
 
@@ -58,6 +62,7 @@ void setup()
   pinMode(9, OUTPUT);
 
   pinMode(14, INPUT);
+  digitalWrite(14, HIGH);
 
 
   starttime = millis() / 1000;
@@ -65,6 +70,9 @@ void setup()
 
 void loop()
 {
+
+
+
 
   if ( nextSeconds <= millis()  ) {
     if ( led == LOW ) {
@@ -75,6 +83,8 @@ void loop()
     nextSeconds += 1000;
   }
   digitalWrite(15, led);
+
+
 
   if ( digitalRead( 10 ) == LOW && btnMilitar == HIGH && digitalRead( 13 ) == HIGH && digitalRead( 8 )  == HIGH ) {
     ahours = 12;
@@ -92,6 +102,32 @@ void loop()
     lcd.print( "horas" );
   }
   btnMilitar = digitalRead( 10 );
+
+  if (digitalRead(14) == LOW && btnActiva == HIGH && digitalRead(12) == HIGH && digitalRead(10) == HIGH) {
+    if (numberAlarm == 1 && alarma1activada == 1) {
+      alarma1activada = 0;
+      lcd.setCursor(2, 1);
+      lcd.print("Alarma 1 desactivada");
+    }else if (numberAlarm == 1 && alarma1activada == 0) {
+      alarma1activada = 1;
+      lcd.setCursor(2, 1);
+      lcd.print("Alarma 1 activada");
+    }else if (numberAlarm == 2 && alarma2activada == 1) {
+      alarma2activada = 0;
+      lcd.setCursor(2, 1);
+      lcd.print("Alarma 2 desactivada");
+    }else if (numberAlarm == 2 && alarma2activada == 0) {
+      alarma2activada = 1;
+      lcd.setCursor(2, 1);
+      Serial.println("oda");
+      lcd.print("Alarma 2 activada");
+    }
+
+
+  } else {
+
+  }
+  btnActiva = digitalRead(14);
 
   if (digitalRead(8) == LOW)
   {
@@ -304,7 +340,11 @@ void loop()
   }
 
 
+
 }
+
+
+
 
 
 void printAlarm1() {
