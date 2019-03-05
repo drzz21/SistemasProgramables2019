@@ -25,6 +25,7 @@ int btnHourHLast = 0;
 
 int btnMilitar = 0;
 
+
 int btnPosponer = 0;
 
 int numberAlarm = 1;
@@ -38,17 +39,11 @@ void setup()
 
   Serial.begin(9600);
 
-
-
   pinMode(13, INPUT);
   digitalWrite(13, HIGH);
 
-
-
   pinMode(15, OUTPUT);
   digitalWrite(15, HIGH);
-
-
 
   pinMode(11, INPUT);
   digitalWrite(11, HIGH);
@@ -61,6 +56,9 @@ void setup()
   digitalWrite(12, HIGH);
 
   pinMode(9, OUTPUT);
+
+  pinMode(14, INPUT);
+
 
   starttime = millis() / 1000;
 }
@@ -78,15 +76,15 @@ void loop()
   }
   digitalWrite(15, led);
 
-  if( digitalRead( 10 ) == LOW && btnMilitar == HIGH && digitalRead( 13 ) == HIGH && digitalRead( 8 )  == HIGH ){
+  if ( digitalRead( 10 ) == LOW && btnMilitar == HIGH && digitalRead( 13 ) == HIGH && digitalRead( 8 )  == HIGH ) {
     ahours = 12;
     ahours2 = 12;
     lcd.clear();
     lcd.setCursor( 0, 0 );
-    if( militar ){
+    if ( militar ) {
       lcd.print( "12" );
       militar = false;
-    }else{
+    } else {
       lcd.print( "24" );
       militar = true;
     }
@@ -389,4 +387,3 @@ void printAlarm2() {
     }
   }
 }
-
