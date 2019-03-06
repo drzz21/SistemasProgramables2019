@@ -6,7 +6,7 @@ int starttime = 0;
 int activetime;
 int prevoustime = 0;
 
-int hours = 0;
+int hours = 1;
 int mins = 0;
 
 int ahours = 12;
@@ -26,8 +26,8 @@ int btnHourHLast = 0;
 
 int btnMilitar = 0;
 
-int contadorhoras = 0;
-String ampm = "";
+int contadorhoras = 1;
+String ampm = "am";
 
 
 int btnPosponer = 0;
@@ -109,21 +109,21 @@ void loop()
   if (digitalRead(14) == LOW && btnActiva == HIGH && digitalRead(12) == HIGH && digitalRead(10) == HIGH) {
     if (numberAlarm == 1 && alarma1activada == 1) {
       alarma1activada = 0;
-      lcd.setCursor(2, 1);
-      lcd.print("Alarma 1 desactivada");
+      lcd.setCursor(0, 1);
+      lcd.print("Alarma 1 : OFF");
     } else if (numberAlarm == 1 && alarma1activada == 0) {
       alarma1activada = 1;
-      lcd.setCursor(2, 1);
-      lcd.print("Alarma 1 activada");
+      lcd.setCursor(0, 1);
+      lcd.print("Alarma 1 : ON");
     } else if (numberAlarm == 2 && alarma2activada == 1) {
       alarma2activada = 0;
-      lcd.setCursor(2, 1);
-      lcd.print("Alarma 2 desactivada");
+      lcd.setCursor(0, 1);
+      lcd.print("Alarma 2 : OFF");
     } else if (numberAlarm == 2 && alarma2activada == 0) {
       alarma2activada = 1;
-      lcd.setCursor(2, 1);
+      lcd.setCursor(0, 1);
       Serial.println("oda");
-      lcd.print("Alarma 2 activada");
+      lcd.print("Alarma 2 : ON");
     }
 
 
@@ -174,6 +174,7 @@ void loop()
         }
         ahours2++;
       }
+
     }
     btnHourLast = digitalRead(10);
 
@@ -183,6 +184,11 @@ void loop()
       printAlarm1();
     } else {
       printAlarm2();
+    }
+
+
+    if (!militar) {
+
     }
 
   }
@@ -389,13 +395,18 @@ void loop()
     }
 
 
-    if ( (ahours == hours && amins == mins) || (ahours2 == hours && amins2 == mins) )
+    if ( (ahours == hours && amins == mins) && alarma1activada == 1 )
     {
       tone(9, 1000, 200);
       delay(100);
       noTone(9);
       delay(100);
 
+    } else if ((ahours2 == hours && amins2 == mins) && alarma2activada == 1) {
+      tone(9, 1000, 200);
+      delay(100);
+      noTone(9);
+      delay(100);
     }
     else
     {
