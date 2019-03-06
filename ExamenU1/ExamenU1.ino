@@ -26,6 +26,9 @@ int btnHourHLast = 0;
 
 int btnMilitar = 0;
 
+int contadorhoras = 0;
+String ampm = "";
+
 
 int btnPosponer = 0;
 
@@ -108,15 +111,15 @@ void loop()
       alarma1activada = 0;
       lcd.setCursor(2, 1);
       lcd.print("Alarma 1 desactivada");
-    }else if (numberAlarm == 1 && alarma1activada == 0) {
+    } else if (numberAlarm == 1 && alarma1activada == 0) {
       alarma1activada = 1;
       lcd.setCursor(2, 1);
       lcd.print("Alarma 1 activada");
-    }else if (numberAlarm == 2 && alarma2activada == 1) {
+    } else if (numberAlarm == 2 && alarma2activada == 1) {
       alarma2activada = 0;
       lcd.setCursor(2, 1);
       lcd.print("Alarma 2 desactivada");
-    }else if (numberAlarm == 2 && alarma2activada == 0) {
+    } else if (numberAlarm == 2 && alarma2activada == 0) {
       alarma2activada = 1;
       lcd.setCursor(2, 1);
       Serial.println("oda");
@@ -149,8 +152,26 @@ void loop()
     if (digitalRead(10) == LOW && btnHourLast == HIGH)
     {
       if ( numberAlarm == 1 ) {
+        //////////////////////////
+        contadorhoras++;
+        if (contadorhoras > 23) {
+          contadorhoras = 0;
+        } else if (contadorhoras >= 0 && contadorhoras < 13) {
+          ampm = "am";
+        } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+          ampm = "pm";
+        }
+
         ahours++;
       } else {
+        contadorhoras++;
+        if (contadorhoras > 23) {
+          contadorhoras = 0;
+        } else if (contadorhoras >= 0 && contadorhoras < 13) {
+          ampm = "am";
+        } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+          ampm = "pm";
+        }
         ahours2++;
       }
     }
@@ -176,6 +197,14 @@ void loop()
       mins++;
       if ( mins == 60 ) {
         mins = 0;
+        contadorhoras++;
+        if (contadorhoras > 23) {
+          contadorhoras = 0;
+        } else if (contadorhoras >= 0 && contadorhoras < 13) {
+          ampm = "am";
+        } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+          ampm = "pm";
+        }
         hours++;
         if ( militar ) {
           if ( hours == 24 ) {
@@ -192,6 +221,14 @@ void loop()
     btnMinHLast = digitalRead(11);
     if (digitalRead(10) == LOW && btnHourHLast == HIGH)
     {
+      contadorhoras++;
+      if (contadorhoras > 23) {
+        contadorhoras = 0;
+      } else if (contadorhoras >= 0 && contadorhoras < 13) {
+        ampm = "am";
+      } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+        ampm = "pm";
+      }
       hours++;
       if (militar) {
         if ( hours == 24 ) {
@@ -222,6 +259,10 @@ void loop()
     }
     lcd.print(mins);
 
+    if (!militar) {
+      lcd.print(ampm);
+    }
+
 
   }
 
@@ -233,6 +274,14 @@ void loop()
       lcd.setCursor(6, 0);
       amins += 5;
       if ( amins > 59 ) {
+        contadorhoras++;
+        if (contadorhoras > 23) {
+          contadorhoras = 0;
+        } else if (contadorhoras >= 0 && contadorhoras < 13) {
+          ampm = "am";
+        } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+          ampm = "pm";
+        }
         ahours++;
         if ( ahours > 23 ) {
           ahours = 0;
@@ -245,6 +294,14 @@ void loop()
       lcd.setCursor(6, 0);
       amins2 += 5;
       if ( amins2 > 59 ) {
+        contadorhoras++;
+        if (contadorhoras > 23) {
+          contadorhoras = 0;
+        } else if (contadorhoras >= 0 && contadorhoras < 13) {
+          ampm = "am";
+        } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+          ampm = "pm";
+        }
         ahours2++;
         if ( ahours2 > 23 ) {
           ahours2 = 0;
@@ -277,6 +334,14 @@ void loop()
 
     if (mins > 59)
     {
+      contadorhoras++;
+      if (contadorhoras > 23) {
+        contadorhoras = 0;
+      } else if (contadorhoras >= 0 && contadorhoras < 13) {
+        ampm = "am";
+      } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+        ampm = "pm";
+      }
       hours++;
       mins = 0;
     }
@@ -319,6 +384,9 @@ void loop()
       lcd.print(mins);
     }
 
+    if (!militar) {
+      lcd.print(ampm);
+    }
 
 
     if ( (ahours == hours && amins == mins) || (ahours2 == hours && amins2 == mins) )
@@ -342,7 +410,6 @@ void loop()
 
 
 }
-
 
 
 
@@ -371,6 +438,14 @@ void printAlarm1() {
   }
   if (amins > 59)
   {
+    contadorhoras++;
+    if (contadorhoras > 23) {
+      contadorhoras = 0;
+    } else if (contadorhoras >= 0 && contadorhoras < 13) {
+      ampm = "am";
+    } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+      ampm = "pm";
+    }
     ahours++;
     amins = 0;
   }
@@ -410,8 +485,21 @@ void printAlarm2() {
   {
     lcd.print(amins2);
   }
+
+  if (!militar) {
+    lcd.print(ampm);
+  }
+
   if (amins2 > 59)
   {
+    contadorhoras++;
+    if (contadorhoras > 23) {
+      contadorhoras = 0;
+    } else if (contadorhoras >= 0 && contadorhoras < 13) {
+      ampm = "am";
+    } else if (contadorhoras >= 13 && contadorhoras <= 23) {
+      ampm = "pm";
+    }
     ahours2++;
     amins2 = 0;
   }
