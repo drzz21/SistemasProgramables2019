@@ -33,11 +33,17 @@ int LDRvalor = 0;
 int LDRled = 13;
 float LDRvoltaje = 0.0;
 
+int currentmenu = 1;
+
 int ThermistorPin = 16;
 int Vo;
 float R1 = 10000;
 float logR2, R2, T, Tc, Tf;
 float c1 = 1.009249522e-03, c2 = 2.378405444e-04, c3 = 2.019202697e-07;
+
+unsigned long startMillis;  //some global variables available anywhere in the program
+unsigned long currentMillis;
+const unsigned long period = 5000;  //the value is a number of milliseconds
 
 
 //b1=8 b2=9
@@ -66,6 +72,8 @@ void setup() {
 
   pinMode(16, INPUT);
 
+  startMillis = millis();  //initial start time
+
 }
 
 static bool measure_environment( float *temperature, float *humidity )
@@ -88,6 +96,21 @@ static bool measure_environment( float *temperature, float *humidity )
 
 void loop() {
 
+
+  
+  currentMillis = millis();  //get the current "time" (actually the number of milliseconds since the program started)
+  if (currentMillis - startMillis >= period)  //test whether the period has elapsed
+  {
+    if (currentmenu == 1) {
+      menu2();
+      currentmenu++;
+    } else if (currentmenu == 2) {
+      menu1();
+      currentmenu = 1;
+    }
+    startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
+  }
+
   float temperature;
   float humidity;
 
@@ -108,7 +131,6 @@ void loop() {
   btnS1 = digitalRead( 8 );
 
   //SENSOR 2
-
   if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
     activasensor2();
 
@@ -116,13 +138,13 @@ void loop() {
   btnS2 = digitalRead( 9 );
 
   //SENSOR 3
-
   if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH) {
     activasensor3();
 
   }
   btnS3 = digitalRead( 6 );
 
+  //SENSOR 4
   if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH) {
     activasensor4();
 
@@ -206,4 +228,19 @@ void activasensor4() {
 
     delay(500);
   } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH);
+}
+
+
+void menu1() {
+  lcd.clear();
+  lcd.setCursor( 0, 0 );
+  lcd.print( "S1            S2" );
+  lcd.setCursor( 0, 1 );
+  lcd.print( "S3            S4" );
+}
+
+void menu2() {
+  lcd.clear();
+  lcd.setCursor( 0, 0 );
+  lcd.print( "S5" );
 }
