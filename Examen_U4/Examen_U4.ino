@@ -100,42 +100,18 @@ void loop() {
     Serial.println( "%" );
   }
 
-  if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
 
-    lcd.setCursor( 2, 0 );
-    lcd.print( "SENSOR 1" );
-    do {
-      lcd.clear();
-      lcd.setCursor( 2, 0 );
-      lcd.print( "SENSOR 1" );
-      a = sr04.Distance();
-      Serial.print(a);
-      Serial.println("cm");
-      lcd.setCursor( 2, 1 );
-      lcd.print( a );
-      lcd.print("cm");
-      delay(1000);
-    } while (digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH);
+  if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
+    activasensor1();
 
   }
   btnS1 = digitalRead( 8 );
 
+  //SENSOR 2
+
   if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
+    activasensor2();
 
-    lcd.setCursor( 2, 0 );
-    lcd.print( "SENSOR 2" );
-    do {
-      lcd.clear();
-      lcd.setCursor( 2, 0 );
-      lcd.print( "SENSOR 2" );
-
-      LDRvalor = analogRead(LDRpin);
-      LDRvoltaje = LDRvalor * (5.0 / 1023.0);
-      lcd.setCursor( 2, 1 );
-      lcd.print("V: ");
-      lcd.print(LDRvoltaje);
-      delay(500);
-    } while (digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH);
   }
   btnS2 = digitalRead( 9 );
 
@@ -186,4 +162,40 @@ void loop() {
   }
   btnS4 = digitalRead( 7 );
 
+}
+
+void activasensor1() {
+
+  lcd.setCursor( 2, 0 );
+  lcd.print( "SENSOR 1" );
+  do {
+    lcd.clear();
+    lcd.setCursor( 2, 0 );
+    lcd.print( "SENSOR 1" );
+    a = sr04.Distance();
+    Serial.print(a);
+    Serial.println("cm");
+    lcd.setCursor( 2, 1 );
+    lcd.print( a );
+    lcd.print("cm");
+    delay(1000);
+  } while (digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH);
+}
+
+void activasensor2() {
+
+  lcd.setCursor( 2, 0 );
+  lcd.print( "SENSOR 2" );
+  do {
+    lcd.clear();
+    lcd.setCursor( 2, 0 );
+    lcd.print( "SENSOR 2" );
+
+    LDRvalor = analogRead(LDRpin);
+    LDRvoltaje = LDRvalor * (5.0 / 1023.0);
+    lcd.setCursor( 2, 1 );
+    lcd.print("V: ");
+    lcd.print(LDRvoltaje);
+    delay(500);
+  } while (digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH);
 }
