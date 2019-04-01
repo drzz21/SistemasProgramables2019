@@ -118,47 +118,14 @@ void loop() {
   //SENSOR 3
 
   if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH) {
+    activasensor3();
 
-    lcd.setCursor( 2, 0 );
-    lcd.print( "SENSOR 3" );
-    do {
-      lcd.clear();
-      lcd.setCursor( 2, 0 );
-      lcd.print( "SENSOR 3" );
-
-      int digitVal = analogRead(15);
-
-      lcd.setCursor( 2, 1 );
-      lcd.print(digitVal);
-
-
-      delay(500);
-    } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH);
   }
   btnS3 = digitalRead( 6 );
 
   if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH) {
+    activasensor4();
 
-    lcd.setCursor( 2, 0 );
-    lcd.print( "SENSOR 4" );
-    do {
-      lcd.clear();
-      lcd.setCursor( 2, 0 );
-      lcd.print( "SENSOR 4" );
-
-      Vo = analogRead(16);
-      R2 = R1 * (1023.0 / (float)Vo - 1.0);
-      logR2 = log(R2);
-      T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
-      Tc = T - 273.15;
-
-      lcd.setCursor( 2, 1 );
-      lcd.print("T: ");
-      lcd.print(Tc);
-      lcd.println(" C");
-
-      delay(500);
-    } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH);
   }
   btnS4 = digitalRead( 7 );
 
@@ -198,4 +165,45 @@ void activasensor2() {
     lcd.print(LDRvoltaje);
     delay(500);
   } while (digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH);
+}
+
+void activasensor3() {
+  lcd.setCursor( 2, 0 );
+  lcd.print( "SENSOR 3" );
+  do {
+    lcd.clear();
+    lcd.setCursor( 2, 0 );
+    lcd.print( "SENSOR 3" );
+
+    int digitVal = analogRead(15);
+
+    lcd.setCursor( 2, 1 );
+    lcd.print(digitVal);
+
+
+    delay(500);
+  } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH);
+}
+
+void activasensor4() {
+  lcd.setCursor( 2, 0 );
+  lcd.print( "SENSOR 4" );
+  do {
+    lcd.clear();
+    lcd.setCursor( 2, 0 );
+    lcd.print( "SENSOR 4" );
+
+    Vo = analogRead(16);
+    R2 = R1 * (1023.0 / (float)Vo - 1.0);
+    logR2 = log(R2);
+    T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
+    Tc = T - 273.15;
+
+    lcd.setCursor( 2, 1 );
+    lcd.print("T: ");
+    lcd.print(Tc);
+    lcd.println(" C");
+
+    delay(500);
+  } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH);
 }
