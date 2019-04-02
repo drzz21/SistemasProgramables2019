@@ -175,10 +175,10 @@ void activasensor1() {
     a = sr04.Distance();
     Serial.print(a);
     Serial.println("cm");
-    lcd.setCursor( 2, 1 );
+    lcd.setCursor( 0, 1 );
     lcd.print( a );
     lcd.print("cm");
-    delay(1000);
+    delay(500);
   } while (digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH);
 }
 
@@ -193,7 +193,7 @@ void activasensor2() {
 
     LDRvalor = analogRead(LDRpin);
     LDRvoltaje = LDRvalor * (5.0 / 1023.0);
-    lcd.setCursor( 2, 1 );
+    lcd.setCursor( 0, 1 );
     lcd.print("V: ");
     lcd.print(LDRvoltaje);
     delay(500);
@@ -209,9 +209,15 @@ void activasensor3() {
     lcd.print( "SENSOR 3" );
 
     int digitVal = analogRead(15);
+    if (digitVal == 0) {
+      lcd.setCursor( 0, 1 );
+      lcd.print("ENCENDIDO");
+    }else{
+      lcd.setCursor( 0, 1 );
+      lcd.print("APAGADO");
+    }
 
-    lcd.setCursor( 2, 1 );
-    lcd.print(digitVal);
+
 
 
     delay(500);
@@ -233,23 +239,23 @@ void activasensor4() {
     Tc = T - 273.15;
     Tc = Tc - 73;
 
-    lcd.setCursor( 2, 1 );
+    lcd.setCursor( 0, 1 );
     lcd.print("T: ");
     lcd.print(Tc);
     lcd.println(" C");
 
-    delay(1000);
+    delay(500);
   } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH);
 }
 
 void activasensor5() {
-  lcd.setCursor( 2, 0 );
+  lcd.setCursor( 0, 0 );
   lcd.print( "SENSOR 5" );
 
   lcd.setCursor( 0, 1 );
   lcd.print( "T:" );
   lcd.print(temperature);
-  lcd.print( "  H:" );
+  lcd.print( " H:" );
   lcd.print(humidity);
   lcd.print( "%" );
 
