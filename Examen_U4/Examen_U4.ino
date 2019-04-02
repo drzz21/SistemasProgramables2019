@@ -35,6 +35,7 @@ int LDRled = 13;
 float LDRvoltaje = 0.0;
 
 int currentmenu = 1;
+bool entrasteauno = false;
 
 int ThermistorPin = 16;
 int Vo;
@@ -106,7 +107,7 @@ void loop() {
 
 
 
-
+  //entrasteauno = false;
 
 
 
@@ -144,19 +145,39 @@ void loop() {
 
   switch (selecta) {
     case 1:
-      activasensor1();
+      if (!entrasteauno) {
+        activasensor1();
+      } else {
+        mainmenu();
+      }
       break;
     case 2:
-      activasensor2();
+      if (!entrasteauno) {
+        activasensor2();
+      } else {
+        mainmenu();
+      }
       break;
     case 3:
-      activasensor3();
+      if (!entrasteauno) {
+        activasensor3();
+      } else {
+        mainmenu();
+      }
       break;
     case 4:
-      activasensor4();
+      if (!entrasteauno) {
+        activasensor4();
+      } else {
+        mainmenu();
+      }
       break;
     case 5:
-      activasensor5();
+      if (!entrasteauno) {
+        activasensor5();
+      } else {
+        mainmenu();
+      }
       break;
     default:
       mainmenu();
@@ -165,12 +186,12 @@ void loop() {
 }
 
 void activasensor1() {
-
-  lcd.setCursor( 2, 0 );
+  entrasteauno = true;
+  lcd.setCursor( 0, 0 );
   lcd.print( "SENSOR 1" );
   do {
     lcd.clear();
-    lcd.setCursor( 2, 0 );
+    lcd.setCursor( 0, 0 );
     lcd.print( "SENSOR 1" );
     a = sr04.Distance();
     Serial.print(a);
@@ -179,16 +200,16 @@ void activasensor1() {
     lcd.print( a );
     lcd.print("cm");
     delay(500);
-  } while (digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH);
+  } while (digitalRead( 7 ) == HIGH);
 }
 
 void activasensor2() {
-
-  lcd.setCursor( 2, 0 );
+  entrasteauno = true;
+  lcd.setCursor( 0, 0 );
   lcd.print( "SENSOR 2" );
   do {
     lcd.clear();
-    lcd.setCursor( 2, 0 );
+    lcd.setCursor( 0, 0 );
     lcd.print( "SENSOR 2" );
 
     LDRvalor = analogRead(LDRpin);
@@ -197,22 +218,23 @@ void activasensor2() {
     lcd.print("V: ");
     lcd.print(LDRvoltaje);
     delay(500);
-  } while (digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH);
+  } while (digitalRead( 7 ) == HIGH);
 }
 
 void activasensor3() {
-  lcd.setCursor( 2, 0 );
+  entrasteauno = true;
+  lcd.setCursor( 0, 0 );
   lcd.print( "SENSOR 3" );
   do {
     lcd.clear();
-    lcd.setCursor( 2, 0 );
+    lcd.setCursor( 0, 0 );
     lcd.print( "SENSOR 3" );
 
     int digitVal = analogRead(15);
     if (digitVal == 0) {
       lcd.setCursor( 0, 1 );
       lcd.print("ENCENDIDO");
-    }else{
+    } else {
       lcd.setCursor( 0, 1 );
       lcd.print("APAGADO");
     }
@@ -221,15 +243,16 @@ void activasensor3() {
 
 
     delay(500);
-  } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH);
+  } while (digitalRead( 7 ) == HIGH);
 }
 
 void activasensor4() {
-  lcd.setCursor( 2, 0 );
+  entrasteauno = true;
+  lcd.setCursor( 0, 0 );
   lcd.print( "SENSOR 4" );
   do {
     lcd.clear();
-    lcd.setCursor( 2, 0 );
+    lcd.setCursor( 0, 0 );
     lcd.print( "SENSOR 4" );
 
     Vo = analogRead(16);
@@ -245,10 +268,11 @@ void activasensor4() {
     lcd.println(" C");
 
     delay(500);
-  } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH);
+  } while (digitalRead( 7 ) == HIGH);
 }
 
 void activasensor5() {
+  entrasteauno = true;
   lcd.setCursor( 0, 0 );
   lcd.print( "SENSOR 5" );
 
