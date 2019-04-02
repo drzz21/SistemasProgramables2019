@@ -111,36 +111,39 @@ void loop() {
 
 
 
-  if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
-    selecta = 1;
+  if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
+    if (currentmenu == 1) {
+      selecta = 1;
+      Serial.println("selecta = 1");
+    } else if (currentmenu == 2) {
+      selecta = 5;
+      Serial.println("selecta = 5");
+    }
+    lcd.clear();
 
   }
   btnS1 = digitalRead( 8 );
 
   //SENSOR 2
-  if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
+  if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
     selecta = 2;
 
   }
   btnS2 = digitalRead( 9 );
 
   //SENSOR 3
-  if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH) {
+  if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
     selecta = 3;
 
   }
   btnS3 = digitalRead( 6 );
 
   //SENSOR 4
-  if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH) {
-    if (currentmenu == 1) {
-      selecta = 4;
-      Serial.println("selecta = 4");
-    } else if (currentmenu == 2) {
-      selecta = 5;
-      Serial.println("selecta = 5");
-    }
-    lcd.clear();
+  if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH && currentmenu == 1) {
+
+    selecta = 4;
+
+
 
   }
   btnS4 = digitalRead( 7 );
@@ -273,7 +276,7 @@ void activasensor4() {
 }
 
 void activasensor5() {
-  entrasteauno = true;
+  //entrasteauno = true;
   lcd.setCursor( 0, 0 );
   lcd.print( "SENSOR 5" );
   if ( measure_environment( &temperature, &humidity ) == true )
@@ -284,15 +287,15 @@ void activasensor5() {
     Serial.print( humidity, 1 );
     Serial.println( "%" );
   }
- 
+
     lcd.setCursor( 0, 1 );
     lcd.print( "T:" );
     lcd.print(temperature);
     lcd.print( " H:" );
     lcd.print(humidity);
     lcd.print( "%" );
-    delay(500);
- 
+  
+
 
 }
 
@@ -314,6 +317,9 @@ void mainmenu() {
 
 void menu1() {
   lcd.clear();
+  selecta=0;
+  entrasteauno = false;
+  
   lcd.setCursor( 0, 0 );
   lcd.print( "S1            S2" );
   lcd.setCursor( 0, 1 );
@@ -321,6 +327,9 @@ void menu1() {
 }
 
 void menu2() {
+  selecta=0;
+  entrasteauno = false;
+  
   lcd.clear();
   lcd.setCursor( 0, 0 );
   lcd.print( "S5" );
