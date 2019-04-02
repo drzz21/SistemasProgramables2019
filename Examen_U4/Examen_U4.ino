@@ -135,8 +135,10 @@ void loop() {
   if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH) {
     if (currentmenu == 1) {
       selecta = 4;
+      Serial.println("selecta = 4");
     } else if (currentmenu == 2) {
       selecta = 5;
+      Serial.println("selecta = 5");
     }
     lcd.clear();
 
@@ -145,31 +147,36 @@ void loop() {
 
   switch (selecta) {
     case 1:
-     
-        activasensor1();
-     
+
+      activasensor1();
+
       break;
     case 2:
-      
-        activasensor2();
-     
+
+      activasensor2();
+
       break;
     case 3:
-      
-        activasensor3();
-    
+
+      activasensor3();
+
       break;
     case 4:
       if (!entrasteauno) {
+        Serial.println("activa sensor 4");
         activasensor4();
       } else {
+        Serial.println("case 4 llama menu");
         mainmenu();
       }
       break;
     case 5:
       if (!entrasteauno) {
+        Serial.println("activa sensor 5");
         activasensor5();
+
       } else {
+        Serial.println("case 5 llama menu");
         mainmenu();
       }
       break;
@@ -269,15 +276,6 @@ void activasensor5() {
   entrasteauno = true;
   lcd.setCursor( 0, 0 );
   lcd.print( "SENSOR 5" );
-
-  lcd.setCursor( 0, 1 );
-  lcd.print( "T:" );
-  lcd.print(temperature);
-  lcd.print( " H:" );
-  lcd.print(humidity);
-  lcd.print( "%" );
-
-
   if ( measure_environment( &temperature, &humidity ) == true )
   {
     Serial.print( "T = " );
@@ -286,6 +284,16 @@ void activasensor5() {
     Serial.print( humidity, 1 );
     Serial.println( "%" );
   }
+ 
+    lcd.setCursor( 0, 1 );
+    lcd.print( "T:" );
+    lcd.print(temperature);
+    lcd.print( " H:" );
+    lcd.print(humidity);
+    lcd.print( "%" );
+    delay(500);
+ 
+
 }
 
 
