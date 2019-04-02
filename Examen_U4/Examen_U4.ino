@@ -133,6 +133,7 @@ void loop() {
   //SENSOR 4
   if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH) {
     selecta = 5;
+    lcd.clear();
 
   }
   btnS4 = digitalRead( 7 );
@@ -238,9 +239,16 @@ void activasensor4() {
 }
 
 void activasensor5() {
-
   lcd.setCursor( 2, 0 );
   lcd.print( "SENSOR 5" );
+
+  lcd.setCursor( 0, 1 );
+  lcd.print( "T:" );
+  lcd.print(temperature);
+  lcd.print( "  H:" );
+  lcd.print(humidity);
+  lcd.print( "%" );
+
 
   if ( measure_environment( &temperature, &humidity ) == true )
   {
@@ -251,6 +259,7 @@ void activasensor5() {
     Serial.println( "%" );
   }
 }
+
 
 void mainmenu() {
   currentMillis = millis();  //get the current "time" (actually the number of milliseconds since the program started)
