@@ -17,6 +17,7 @@ int btnS1 = 0;
 int btnS2 = 0;
 int btnS3 = 0;
 int btnS4 = 0;
+int selecta = 0;
 
 int estadoboton1 = 0;
 int estadoboton2 = 0;
@@ -99,7 +100,7 @@ static bool measure_environment( float *temperature, float *humidity )
 
 
 void loop() {
-  mainmenu();
+
 
 
   float temperature;
@@ -116,31 +117,51 @@ void loop() {
 
 
   if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
-    activasensor1();
+    selecta = 1;
 
   }
   btnS1 = digitalRead( 8 );
 
   //SENSOR 2
   if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
-    activasensor2();
+    selecta = 2;
 
   }
   btnS2 = digitalRead( 9 );
 
   //SENSOR 3
   if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH) {
-    activasensor3();
+    selecta = 3;
 
   }
   btnS3 = digitalRead( 6 );
 
   //SENSOR 4
   if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH) {
-    activasensor4();
+    selecta = 4;
 
   }
   btnS4 = digitalRead( 7 );
+
+  switch (selecta) {
+    case 1:
+      activasensor1();
+      break;
+    case 2:
+      activasensor2();
+      break;
+    case 3:
+      activasensor3();
+      break;
+    case 4:
+      activasensor4();
+      break;
+    case 5:
+      activasensor5();
+      break;
+    default:
+      mainmenu();
+  }
 
 }
 
@@ -220,6 +241,10 @@ void activasensor4() {
 
     delay(1000);
   } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH);
+}
+
+void activasensor5() {
+
 }
 
 void mainmenu() {
