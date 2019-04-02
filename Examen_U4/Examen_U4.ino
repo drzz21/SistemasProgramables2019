@@ -43,9 +43,11 @@ float logR2, R2, T, Tc, Tf;
 float c1 = 1.009249522e-03, c2 = 2.378405444e-04, c3 = 2.019202697e-07;
 
 unsigned long startMillis;  //some global variables available anywhere in the program
-unsigned long currentMillis = 5000;
-const unsigned long period = 5000;  //the value is a number of milliseconds
+unsigned long currentMillis = 0;
+const unsigned long period = 2000;  //the value is a number of milliseconds
 
+float temperature;
+float humidity;
 
 //b1=8 b2=9
 //b3=6 b4=7
@@ -103,17 +105,9 @@ void loop() {
 
 
 
-  float temperature;
-  float humidity;
 
-  if ( measure_environment( &temperature, &humidity ) == true )
-  {
-    Serial.print( "T = " );
-    Serial.print( temperature, 1 );
-    Serial.print( " deg. C, H = " );
-    Serial.print( humidity, 1 );
-    Serial.println( "%" );
-  }
+
+
 
 
   if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
@@ -138,7 +132,7 @@ void loop() {
 
   //SENSOR 4
   if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH) {
-    selecta = 4;
+    selecta = 5;
 
   }
   btnS4 = digitalRead( 7 );
@@ -245,6 +239,17 @@ void activasensor4() {
 
 void activasensor5() {
 
+  lcd.setCursor( 2, 0 );
+  lcd.print( "SENSOR 5" );
+
+  if ( measure_environment( &temperature, &humidity ) == true )
+  {
+    Serial.print( "T = " );
+    Serial.print( temperature, 1 );
+    Serial.print( " deg. C, H = " );
+    Serial.print( humidity, 1 );
+    Serial.println( "%" );
+  }
 }
 
 void mainmenu() {
