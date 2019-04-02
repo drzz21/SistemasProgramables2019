@@ -132,7 +132,11 @@ void loop() {
 
   //SENSOR 4
   if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH) {
-    selecta = 5;
+    if (currentmenu == 1) {
+      selecta = 4;
+    } else if (currentmenu == 2) {
+      selecta = 5;
+    }
     lcd.clear();
 
   }
