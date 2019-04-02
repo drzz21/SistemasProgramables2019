@@ -225,14 +225,14 @@ void activasensor2() {
   } while (digitalRead( 7 ) == HIGH);
 }
 
-void activasensor3() {
+void activasensor5() {
   entrasteauno = true;
   lcd.setCursor( 0, 0 );
-  lcd.print( "SENSOR 3" );
+  lcd.print( "SENSOR 5" );
   do {
     lcd.clear();
     lcd.setCursor( 0, 0 );
-    lcd.print( "SENSOR 3" );
+    lcd.print( "SENSOR 5" );
 
     int digitVal = analogRead(15);
     if (digitVal == 0) {
@@ -250,14 +250,14 @@ void activasensor3() {
   } while (digitalRead( 7 ) == HIGH);
 }
 
-void activasensor4() {
+void activasensor3() {
   entrasteauno = true;
   lcd.setCursor( 0, 0 );
-  lcd.print( "SENSOR 4" );
+  lcd.print( "SENSOR 3" );
   do {
     lcd.clear();
     lcd.setCursor( 0, 0 );
-    lcd.print( "SENSOR 4" );
+    lcd.print( "SENSOR 3" );
 
     Vo = analogRead(16);
     R2 = R1 * (1023.0 / (float)Vo - 1.0);
@@ -275,28 +275,32 @@ void activasensor4() {
   } while (digitalRead( 7 ) == HIGH);
 }
 
-void activasensor5() {
+void activasensor4() {
   //entrasteauno = true;
   lcd.setCursor( 0, 0 );
-  lcd.print( "SENSOR 5" );
-  if ( measure_environment( &temperature, &humidity ) == true )
-  {
-    Serial.print( "T = " );
-    Serial.print( temperature, 1 );
-    Serial.print( " deg. C, H = " );
-    Serial.print( humidity, 1 );
-    Serial.println( "%" );
-  }
-
+  lcd.clear();
+  lcd.print( "SENSOR 4" );
+  do {
     lcd.setCursor( 0, 1 );
+
+
     lcd.print( "T:" );
     lcd.print(temperature);
-    lcd.print( " H:" );
+    lcd.print( "  H:" );
     lcd.print(humidity);
     lcd.print( "%" );
-  
 
 
+    if ( measure_environment( &temperature, &humidity ) == true )
+    {
+      lcd.setCursor( 0, 1 );
+      lcd.print( "T:" );
+      lcd.print(temperature);
+      lcd.print( "  H:" );
+      lcd.print(humidity);
+      lcd.print( "%" );
+    }
+  } while (digitalRead( 7 ) == HIGH);
 }
 
 
@@ -317,9 +321,8 @@ void mainmenu() {
 
 void menu1() {
   lcd.clear();
-  selecta=0;
-  entrasteauno = false;
-  
+  selecta = 0;
+
   lcd.setCursor( 0, 0 );
   lcd.print( "S1            S2" );
   lcd.setCursor( 0, 1 );
@@ -327,9 +330,9 @@ void menu1() {
 }
 
 void menu2() {
-  selecta=0;
+  selecta = 0;
   entrasteauno = false;
-  
+
   lcd.clear();
   lcd.setCursor( 0, 0 );
   lcd.print( "S5" );
