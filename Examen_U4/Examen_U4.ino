@@ -145,25 +145,19 @@ void loop() {
 
   switch (selecta) {
     case 1:
-      if (!entrasteauno) {
+     
         activasensor1();
-      } else {
-        mainmenu();
-      }
+     
       break;
     case 2:
-      if (!entrasteauno) {
+      
         activasensor2();
-      } else {
-        mainmenu();
-      }
+     
       break;
     case 3:
-      if (!entrasteauno) {
+      
         activasensor3();
-      } else {
-        mainmenu();
-      }
+    
       break;
     case 4:
       if (!entrasteauno) {
