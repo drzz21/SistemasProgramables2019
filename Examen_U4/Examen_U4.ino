@@ -42,7 +42,7 @@ float logR2, R2, T, Tc, Tf;
 float c1 = 1.009249522e-03, c2 = 2.378405444e-04, c3 = 2.019202697e-07;
 
 unsigned long startMillis;  //some global variables available anywhere in the program
-unsigned long currentMillis;
+unsigned long currentMillis = 5000;
 const unsigned long period = 5000;  //the value is a number of milliseconds
 
 
@@ -52,6 +52,10 @@ const unsigned long period = 5000;  //the value is a number of milliseconds
 void setup() {
   lcd.begin(16, 2);
   lcd.clear();
+  lcd.setCursor( 0, 0 );
+  lcd.print( "S1            S2" );
+  lcd.setCursor( 0, 1 );
+  lcd.print( "S3            S4" );
 
   Serial.begin(9600);
 
@@ -95,21 +99,8 @@ static bool measure_environment( float *temperature, float *humidity )
 
 
 void loop() {
+  mainmenu();
 
-
-  
-  currentMillis = millis();  //get the current "time" (actually the number of milliseconds since the program started)
-  if (currentMillis - startMillis >= period)  //test whether the period has elapsed
-  {
-    if (currentmenu == 1) {
-      menu2();
-      currentmenu++;
-    } else if (currentmenu == 2) {
-      menu1();
-      currentmenu = 1;
-    }
-    startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
-  }
 
   float temperature;
   float humidity;
@@ -220,16 +211,31 @@ void activasensor4() {
     logR2 = log(R2);
     T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
     Tc = T - 273.15;
+    Tc = Tc - 73;
 
     lcd.setCursor( 2, 1 );
     lcd.print("T: ");
     lcd.print(Tc);
     lcd.println(" C");
 
-    delay(500);
+    delay(1000);
   } while (digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH);
 }
 
+void mainmenu() {
+  currentMillis = millis();  //get the current "time" (actually the number of milliseconds since the program started)
+  if (currentMillis - startMillis >= period)  //test whether the period has elapsed
+  {
+    if (currentmenu == 1) {
+      menu2();
+      currentmenu++;
+    } else if (currentmenu == 2) {
+      menu1();
+      currentmenu = 1;
+    }
+    startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
+  }
+}
 
 void menu1() {
   lcd.clear();
