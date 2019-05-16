@@ -242,13 +242,13 @@ void activasensor5() {
     int digitVal = analogRead(15);
     if (digitVal == 0) {
       lcd.setCursor( 0, 1 );
-      Serial.print(S5);
+      Serial.print("S5");
       Serial.println("1");
       lcd.print("ENCENDIDO");
     } else {
       lcd.setCursor( 0, 1 );
       lcd.print("APAGADO");
-      Serial.print(S5);
+      Serial.print("S5");
       Serial.println("0");
     }
 
@@ -274,6 +274,7 @@ void activasensor3() {
     T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
     Tc = T - 273.15;
     Tc = Tc - 73;
+    Tc = Tc + 110;
 
     lcd.setCursor( 0, 1 );
     lcd.print("T: ");
