@@ -1,0 +1,10 @@
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\bin\Debug\ProyectoArduinoSensores.exe.config
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\bin\Debug\ProyectoArduinoSensores.exe
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\bin\Debug\ProyectoArduinoSensores.pdb
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\obj\Debug\ProyectoArduinoSensores.csprojAssemblyReference.cache
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\obj\Debug\ProyectoArduinoSensores.Form1.resources
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\obj\Debug\ProyectoArduinoSensores.Properties.Resources.resources
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\obj\Debug\ProyectoArduinoSensores.csproj.GenerateResource.cache
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\obj\Debug\ProyectoArduinoSensores.csproj.CoreCompileInputs.cache
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\obj\Debug\ProyectoArduinoSensores.exe
+c:\users\dios\Source\Repos\ProyectoArduinoSensores\ProyectoArduinoSensores\obj\Debug\ProyectoArduinoSensores.pdb
