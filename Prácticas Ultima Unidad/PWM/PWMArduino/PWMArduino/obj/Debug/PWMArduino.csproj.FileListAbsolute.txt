@@ -1,0 +1,10 @@
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\bin\Debug\PWMArduino.exe.config
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\bin\Debug\PWMArduino.exe
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\bin\Debug\PWMArduino.pdb
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\obj\Debug\PWMArduino.csprojAssemblyReference.cache
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\obj\Debug\PWMArduino.Form1.resources
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\obj\Debug\PWMArduino.Properties.Resources.resources
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\obj\Debug\PWMArduino.csproj.GenerateResource.cache
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\obj\Debug\PWMArduino.csproj.CoreCompileInputs.cache
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\obj\Debug\PWMArduino.exe
+C:\Users\Dios\Source\Repos\PWMArduino\PWMArduino\obj\Debug\PWMArduino.pdb
