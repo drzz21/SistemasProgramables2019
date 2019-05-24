@@ -16,6 +16,8 @@ namespace ProyectoArduinoSensores
         double temperaturatermistor;
         int tempint;
         double valorvoltaje = 0;
+        int temperaturadht;
+        int humedaddht;
         public Form1()
         {
             InitializeComponent();
@@ -54,11 +56,11 @@ namespace ProyectoArduinoSensores
                 }
                 else if (cadena.Substring(0, 3) == "S4A")
                 {
-                    textBox4.Text = cadena.Substring(3, cadena.Length - 3);
+                    txtTemperaturaDHT.Text = cadena.Substring(3, cadena.Length - 7);
                 }
                 else if (cadena.Substring(0, 3) == "S4B")
                 {
-                    textBox6.Text = cadena.Substring(3, cadena.Length - 3);
+                    txtHumedadDHT.Text = cadena.Substring(3, cadena.Length - 7);
                 }
             }
             catch
@@ -96,7 +98,7 @@ namespace ProyectoArduinoSensores
             try
             {
 
-                if (Int32.Parse(textBox1.Text) < 200)
+                if (Int32.Parse(textBox1.Text) < 300)
                 {
                     trackBar1.Value = Int32.Parse(textBox1.Text);
                 }
@@ -183,6 +185,48 @@ namespace ProyectoArduinoSensores
             catch
             {
 
+            }
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            if (int.Parse(textBox5.Text)==0)
+            {
+                this.picTilt.Image = Properties.Resources.michaelderecho;
+                lblTilt.Text = "RECTO";
+            }
+            else
+            {
+                this.picTilt.Image = Properties.Resources.michaelinclinado;
+                lblTilt.Text = "INCLINADO";
+            }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            try {
+                temperaturadht = int.Parse(txtTemperaturaDHT.Text);
+            progressBar1.Value = (int)temperaturadht;
+                lblTemp.Text = temperaturadht + "%";
+            }
+            catch
+            {
+            }
+
+
+
+        }
+
+        private void txtHumedadDHT_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                humedaddht = int.Parse(txtHumedadDHT.Text);
+                progressBar2.Value = (int)humedaddht;
+                lblHum.Text = humedaddht + "%";
+            }
+            catch
+            {
             }
         }
     }
