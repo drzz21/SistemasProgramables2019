@@ -13,6 +13,9 @@ namespace ProyectoArduinoSensores
     public partial class Form1 : Form
     {
         string cadena = "";
+        double temperaturatermistor;
+        int tempint;
+        double valorvoltaje = 0;
         public Form1()
         {
             InitializeComponent();
@@ -23,38 +26,44 @@ namespace ProyectoArduinoSensores
         private void Form1_Load(object sender, EventArgs e)
         {
             serialPort1.PortName = "COM4";
-            lblPWM.Text = trackBar1.Value.ToString();
         }
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             cadena = serialPort1.ReadLine();
+            try
+            {
 
-            if (cadena.Substring(0, 2) == "S1")
-            {
-                //lblActivo1.Visible = true;
-                textBox1.Text= cadena.Substring(2, cadena.Length-2)+"";
+                if (cadena.Substring(0, 2) == "S1")
+                {
+                    //lblActivo1.Visible = true;
+                    textBox1.Text = cadena.Substring(2, cadena.Length - 2) + "";
 
+                }
+                else if (cadena.Substring(0, 2) == "S2")
+                {
+                    textBox2.Text = cadena.Substring(2, cadena.Length - 2) + "";
+                }
+                else if (cadena.Substring(0, 2) == "S3")
+                {
+                    txtTerm.Text = cadena.Substring(2, cadena.Length - 2) + "";
+                }
+                else if (cadena.Substring(0, 2) == "S5")
+                {
+                    textBox5.Text = cadena.Substring(2, cadena.Length - 2);
+                }
+                else if (cadena.Substring(0, 3) == "S4A")
+                {
+                    textBox4.Text = cadena.Substring(3, cadena.Length - 3);
+                }
+                else if (cadena.Substring(0, 3) == "S4B")
+                {
+                    textBox6.Text = cadena.Substring(3, cadena.Length - 3);
+                }
             }
-            else if (cadena.Substring(0, 2) == "S2")
+            catch
             {
-                textBox2.Text = cadena.Substring(2, cadena.Length - 2)+ "";
-            }
-            else if (cadena.Substring(0, 2) == "S3")
-            {
-                textBox3.Text = cadena.Substring(2, cadena.Length - 2)+ "";
-            }
-            else if (cadena.Substring(0, 2) == "S5")
-            {
-                textBox5.Text = cadena.Substring(2, cadena.Length - 2);
-            }
-            else if (cadena.Substring(0, 3) == "S4A")
-            {
-                textBox4.Text = cadena.Substring(3, cadena.Length - 3);
-            }
-            else if (cadena.Substring(0, 3) == "S4B")
-            {
-                textBox6.Text = cadena.Substring(3, cadena.Length - 3);
+
             }
         }
 
@@ -86,6 +95,7 @@ namespace ProyectoArduinoSensores
         {
             try
             {
+
                 if (Int32.Parse(textBox1.Text) < 200)
                 {
                     trackBar1.Value = Int32.Parse(textBox1.Text);
@@ -121,6 +131,59 @@ namespace ProyectoArduinoSensores
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                valorvoltaje = double.Parse(textBox2.Text);
+
+                if (valorvoltaje >= 0.0 && valorvoltaje < 0.3)
+                {
+                    lblCuantaLuz.Text = "Poca luz :(";
+                    btnCuantaLuz.BackColor = Color.FromArgb(255, 44, 21);
+                }else if (valorvoltaje >= 0.3 && valorvoltaje < 0.7)
+                {
+                    lblCuantaLuz.Text = "Luz regular :|";
+                    btnCuantaLuz.BackColor = Color.FromArgb(255, 247, 0);
+                }
+                else if (valorvoltaje >= 0.7 && valorvoltaje < 1.4)
+                {
+                    lblCuantaLuz.Text = "Mucha Luz :)";
+                    btnCuantaLuz.BackColor = Color.FromArgb(19, 255, 0);
+                }
+
+                else if (valorvoltaje >= 1.4)
+                {
+                    lblCuantaLuz.Text = "EXCESO DE LUZ :O";
+                    btnCuantaLuz.BackColor = Color.FromArgb(19, 255, 0);
+                }
+            }
+            catch
+            {
+
+            }
+
+            
+
+            
+
+            
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            try {
+                temperaturatermistor = double.Parse(txtTerm.Text);
+                temperaturatermistor = Math.Round(temperaturatermistor,0);
+                tempint = (int)temperaturatermistor;
+            trackTerm.Value = tempint;
+            }
+            catch
+            {
+
+            }
         }
     }
 }
