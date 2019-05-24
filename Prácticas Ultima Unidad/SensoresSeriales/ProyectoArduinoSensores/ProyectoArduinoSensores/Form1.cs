@@ -81,6 +81,46 @@ namespace ProyectoArduinoSensores
         {
             serialPort1.Close();
         }
-        
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Int32.Parse(textBox1.Text) < 200)
+                {
+                    trackBar1.Value = Int32.Parse(textBox1.Text);
+                }
+
+                if (Int32.Parse(textBox1.Text) < 20)
+                {
+                    label6.Text = "MUY CERCA";
+                }
+
+                if (Int32.Parse(textBox1.Text) > 20)
+                {
+                    label6.Text = "CERCA";
+                }
+
+                if (Int32.Parse(textBox1.Text) > 100 && Int32.Parse(textBox1.Text) > 200)
+                {
+                    label7.Text = "MUY LEJOS";
+                }
+
+                if (Int32.Parse(textBox1.Text) > 20 && Int32.Parse(textBox1.Text) < 100)
+                {
+                    label7.Text = "LEJOS";
+                }
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }
