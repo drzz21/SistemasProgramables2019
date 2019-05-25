@@ -85,5 +85,17 @@
   <ItemGroup>
     <None Include="Resources\michaelinclinado.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foco creizi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foco happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foco sad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foco medio.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -97,6 +97,7 @@ namespace ProyectoArduinoSensores
         {
             try
             {
+                label14.Text = textBox1.Text + "cm";
 
                 if (Int32.Parse(textBox1.Text) < 300)
                 {
@@ -143,21 +144,25 @@ namespace ProyectoArduinoSensores
 
                 if (valorvoltaje >= 0.0 && valorvoltaje < 0.3)
                 {
+                    this.pbfoco.Image = Properties.Resources.foco_sad;
                     lblCuantaLuz.Text = "Poca luz :(";
                     btnCuantaLuz.BackColor = Color.FromArgb(255, 44, 21);
                 }else if (valorvoltaje >= 0.3 && valorvoltaje < 0.7)
                 {
+                    this.pbfoco.Image = Properties.Resources.foco_medio;
                     lblCuantaLuz.Text = "Luz regular :|";
                     btnCuantaLuz.BackColor = Color.FromArgb(255, 247, 0);
                 }
                 else if (valorvoltaje >= 0.7 && valorvoltaje < 1.4)
                 {
+                    this.pbfoco.Image = Properties.Resources.foco_happy;
                     lblCuantaLuz.Text = "Mucha Luz :)";
                     btnCuantaLuz.BackColor = Color.FromArgb(19, 255, 0);
                 }
 
                 else if (valorvoltaje >= 1.4)
                 {
+                    this.pbfoco.Image = Properties.Resources.foco_creizi;
                     lblCuantaLuz.Text = "EXCESO DE LUZ :O";
                     btnCuantaLuz.BackColor = Color.FromArgb(19, 255, 0);
                 }
@@ -180,6 +185,7 @@ namespace ProyectoArduinoSensores
                 temperaturatermistor = double.Parse(txtTerm.Text);
                 temperaturatermistor = Math.Round(temperaturatermistor,0);
                 tempint = (int)temperaturatermistor;
+                label9.Text = tempint + " °C";
             trackTerm.Value = tempint;
             }
             catch
@@ -207,7 +213,7 @@ namespace ProyectoArduinoSensores
             try {
                 temperaturadht = int.Parse(txtTemperaturaDHT.Text);
             progressBar1.Value = (int)temperaturadht;
-                lblTemp.Text = temperaturadht + "%";
+                lblTemp.Text = temperaturadht + " °C";
             }
             catch
             {

@@ -47,23 +47,26 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnCuantaLuz = new System.Windows.Forms.Button();
             this.lblCuantaLuz = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.trackTerm = new System.Windows.Forms.TrackBar();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblTilt = new System.Windows.Forms.Label();
-            this.picTilt = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.lblTemp = new System.Windows.Forms.Label();
             this.lblHum = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.picTilt = new System.Windows.Forms.PictureBox();
+            this.btnCuantaLuz = new System.Windows.Forms.Button();
+            this.pbfoco = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,6 +75,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTilt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbfoco)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -210,6 +214,7 @@
             // 
             // trackBar1
             // 
+            this.trackBar1.Enabled = false;
             this.trackBar1.Location = new System.Drawing.Point(26, 31);
             this.trackBar1.Maximum = 300;
             this.trackBar1.Name = "trackBar1";
@@ -242,6 +247,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.trackBar1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -255,6 +261,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.pbfoco);
             this.groupBox2.Controls.Add(this.lblCuantaLuz);
             this.groupBox2.Controls.Add(this.btnCuantaLuz);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -264,17 +271,6 @@
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "LUMINOSIDAD";
-            // 
-            // btnCuantaLuz
-            // 
-            this.btnCuantaLuz.BackColor = System.Drawing.Color.White;
-            this.btnCuantaLuz.Enabled = false;
-            this.btnCuantaLuz.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCuantaLuz.Location = new System.Drawing.Point(13, 30);
-            this.btnCuantaLuz.Name = "btnCuantaLuz";
-            this.btnCuantaLuz.Size = new System.Drawing.Size(100, 121);
-            this.btnCuantaLuz.TabIndex = 0;
-            this.btnCuantaLuz.UseVisualStyleBackColor = false;
             // 
             // lblCuantaLuz
             // 
@@ -288,8 +284,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.trackTerm);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -303,6 +300,7 @@
             // trackTerm
             // 
             this.trackTerm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.trackTerm.Enabled = false;
             this.trackTerm.Location = new System.Drawing.Point(98, 28);
             this.trackTerm.Maximum = 80;
             this.trackTerm.Name = "trackTerm";
@@ -319,16 +317,6 @@
             this.label8.Size = new System.Drawing.Size(42, 25);
             this.label8.TabIndex = 20;
             this.label8.Text = "0°C";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(40, 156);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 25);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "40°C";
             // 
             // label10
             // 
@@ -378,16 +366,6 @@
             this.lblTilt.TabIndex = 18;
             this.lblTilt.Text = "RECTO";
             // 
-            // picTilt
-            // 
-            this.picTilt.Image = global::ProyectoArduinoSensores.Properties.Resources.michaelderecho;
-            this.picTilt.Location = new System.Drawing.Point(18, 30);
-            this.picTilt.Name = "picTilt";
-            this.picTilt.Size = new System.Drawing.Size(123, 121);
-            this.picTilt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picTilt.TabIndex = 19;
-            this.picTilt.TabStop = false;
-            // 
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.Color.Tomato;
@@ -433,9 +411,8 @@
             this.lblTemp.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTemp.Location = new System.Drawing.Point(167, 36);
             this.lblTemp.Name = "lblTemp";
-            this.lblTemp.Size = new System.Drawing.Size(17, 25);
+            this.lblTemp.Size = new System.Drawing.Size(0, 25);
             this.lblTemp.TabIndex = 19;
-            this.lblTemp.Text = ".";
             this.lblTemp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblHum
@@ -444,10 +421,72 @@
             this.lblHum.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHum.Location = new System.Drawing.Point(167, 110);
             this.lblHum.Name = "lblHum";
-            this.lblHum.Size = new System.Drawing.Size(17, 25);
+            this.lblHum.Size = new System.Drawing.Size(0, 25);
             this.lblHum.TabIndex = 20;
-            this.lblHum.Text = ".";
             this.lblHum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(23, 168);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(17, 25);
+            this.label9.TabIndex = 20;
+            this.label9.Text = ".";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(23, 131);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(61, 25);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "Actual";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(194, 76);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 25);
+            this.label14.TabIndex = 16;
+            this.label14.Text = ".";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // picTilt
+            // 
+            this.picTilt.Image = global::ProyectoArduinoSensores.Properties.Resources.michaelderecho;
+            this.picTilt.Location = new System.Drawing.Point(18, 30);
+            this.picTilt.Name = "picTilt";
+            this.picTilt.Size = new System.Drawing.Size(123, 121);
+            this.picTilt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picTilt.TabIndex = 19;
+            this.picTilt.TabStop = false;
+            // 
+            // btnCuantaLuz
+            // 
+            this.btnCuantaLuz.BackColor = System.Drawing.Color.White;
+            this.btnCuantaLuz.Enabled = false;
+            this.btnCuantaLuz.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCuantaLuz.Location = new System.Drawing.Point(13, 30);
+            this.btnCuantaLuz.Name = "btnCuantaLuz";
+            this.btnCuantaLuz.Size = new System.Drawing.Size(100, 121);
+            this.btnCuantaLuz.TabIndex = 0;
+            this.btnCuantaLuz.UseVisualStyleBackColor = false;
+            // 
+            // pbfoco
+            // 
+            this.pbfoco.BackColor = System.Drawing.Color.Transparent;
+            this.pbfoco.Image = global::ProyectoArduinoSensores.Properties.Resources.foco_sad;
+            this.pbfoco.Location = new System.Drawing.Point(25, 45);
+            this.pbfoco.Name = "pbfoco";
+            this.pbfoco.Size = new System.Drawing.Size(76, 88);
+            this.pbfoco.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbfoco.TabIndex = 19;
+            this.pbfoco.TabStop = false;
             // 
             // Form1
             // 
@@ -475,6 +514,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.Text = "Arduino + C#";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -491,6 +531,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTilt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbfoco)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -520,7 +561,6 @@
         private System.Windows.Forms.Label lblCuantaLuz;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TrackBar trackTerm;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -533,6 +573,10 @@
         public System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblHum;
         private System.Windows.Forms.Label lblTemp;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.PictureBox pbfoco;
     }
 }
 
