@@ -16,6 +16,15 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 int btnS1 = 0;
 int btnS2 = 0;
 int btnS3 = 0;
+int btnS4 = 0;
+
+
+int currentmenu = 1;
+bool entrasteauno = false;
+
+unsigned long startMillis;  //some global variables available anywhere in the program
+unsigned long currentMillis = 0;
+const unsigned long period = 2000;  //the value is a number of milliseconds
 
 int selecta = 0;
 
@@ -24,22 +33,36 @@ int selecta = 0;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(2, INPUT);
-  digitalWrite(2, HIGH);
-
-  pinMode(3, INPUT);
-  digitalWrite(3, HIGH);
-
-  pinMode(4, INPUT);
-  digitalWrite(4, HIGH);
-
   balanza.begin(DOUT, CLK);
   Wire.begin();
   lcd.backlight();
   lcd.init();
   lcd.println("<<<S.C.P.>>>");
-  delay(1000);
-  
+  delay(3000);
+  lcd.clear();
+  lcd.setCursor( 0, 0 );
+  lcd.print( "ALTURA" );
+  lcd.setCursor( 0, 1 );
+  lcd.print( "PESO" );
+
+
+  pinMode(8, INPUT);
+  digitalWrite(8, HIGH);
+
+  pinMode(9, INPUT);
+  digitalWrite(9, HIGH);
+
+  pinMode(6, INPUT);
+  digitalWrite(6, HIGH);
+
+  pinMode(7, INPUT);
+  digitalWrite(7, HIGH);
+
+  startMillis = millis();  //initial start time
+
+
+
+
   lcd.clear();
 
   balanza.set_scale(235970.3014); // Establecemos la escala
@@ -53,15 +76,47 @@ void setup() {
 }
 
 void loop() {
-  mainmenu();
+  if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
+    if (currentmenu == 1) {
+      selecta = 1;
+      //Serial.println("selecta = 1");
+    } else if (currentmenu == 2) {
+      selecta = 5;
+      //Serial.println("selecta = 5");
+    }
+    lcd.clear();
+
+  }
+  btnS1 = digitalRead( 8 );
+
+  //SENSOR 2
+  if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
+    selecta = 2;
+
+  }
+  btnS2 = digitalRead( 9 );
+
+  //SENSOR 3
+  if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
+    selecta = 3;
+
+  }
+  btnS3 = digitalRead( 6 );
+
+  //SENSOR 4
+  if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH && currentmenu == 1) {
+
+    selecta = 4;
+
+
+
+  }
+  btnS4 = digitalRead( 7 );
 
 
 }
 
 void mainmenu() {
   Serial.println("dsa");
-  lcd.setCursor( 0, 0 );
-  lcd.print( "ALTURA      PESO" );
-  lcd.setCursor( 0, 1 );
-  lcd.print( "IMC       %GRASA" );
+
 }
