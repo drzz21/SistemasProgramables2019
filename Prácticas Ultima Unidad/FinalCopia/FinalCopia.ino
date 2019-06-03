@@ -75,11 +75,10 @@ void loop() {
       lcd.print("Altura:");
       lcd.print(b);
       dae += b;
-      Serial.println("A");
       Serial.println(b);
       lcd.println("c.m.");
     } else {
-      Serial.println("A0");
+      
       lcd.setCursor( 0, 0 );
       lcd.println("COLOQUESE BIEN");
     }
@@ -90,7 +89,6 @@ void loop() {
       lcd.print( "Peso:" );
 
       lcd.println(balanza.get_units(20), 3);
-      Serial.print("P");
       Serial.println(balanza.get_units(20), 3);
 
       dae += (balanza.get_units(20), 3);
@@ -98,8 +96,6 @@ void loop() {
       lcd.setCursor( 0, 1 );
       lcd.print( "Peso:" );
       lcd.println("0");
-
-      Serial.println("P0");
     }
 
     delay(500);
