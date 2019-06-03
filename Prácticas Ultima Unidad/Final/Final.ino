@@ -80,10 +80,8 @@ void loop() {
   if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
     if (currentmenu == 1) {
       selecta = 1;
-      //Serial.println("selecta = 1");
     } else if (currentmenu == 2) {
       selecta = 3;
-      //Serial.println("selecta = 5");
     }
     lcd.clear();
 
@@ -94,10 +92,8 @@ void loop() {
   if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
     if (currentmenu == 1) {
       selecta = 2;
-      //Serial.println("selecta = 1");
     } else if (currentmenu == 2) {
       selecta = 4;
-      //Serial.println("selecta = 5");
     }
     lcd.clear();
 
@@ -110,17 +106,17 @@ void loop() {
 
   }
   btnS3 = digitalRead( 6 );
-  
 
-//  //SENSOR 4
-//  if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH && currentmenu == 1) {
-//
-//    selecta = 4;
-//
-//
-//
-//  }
-//  btnS4 = digitalRead( 7 );
+
+  //  //SENSOR 4
+  //  if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH && currentmenu == 1) {
+  //
+  //    selecta = 4;
+  //
+  //
+  //
+  //  }
+  //  btnS4 = digitalRead( 7 );
 
 
 
@@ -136,6 +132,8 @@ void loop() {
 
       break;
     case 3:
+
+
       case3();
 
 
@@ -158,19 +156,97 @@ void loop() {
 
 
 void case1() {
+  entrasteauno = true;
+  //  lcd.setCursor( 0, 0 );
+  //  lcd.print( "ALTURA" );
+  do {
+    Wire.begin();
+    lcd.backlight();
+    lcd.init();
+    lcd.clear();
+    lcd.setCursor( 0, 0 );
+    lcd.print( "ALTURA" );
 
+
+
+    lcd.setCursor( 0, 1 );
+    lcd.println("Aquivaltura: ");
+
+    Serial.println("entra altura");
+
+
+
+    delay(500);
+  } while (digitalRead( 7 ) == HIGH);
 }
 
 void case2() {
+  entrasteauno = true;
+  //  lcd.setCursor( 0, 0 );
+  //  lcd.print( "ALTURA" );
+  do {
+    Wire.begin();
+    lcd.backlight();
+    lcd.init();
+    lcd.clear();
+    lcd.setCursor( 0, 0 );
+    lcd.print( "PESO" );
+
+
+
+    lcd.setCursor( 0, 1 );
+    lcd.println("Aquivapeso: ");
+
+
+
+    delay(500);
+  } while (digitalRead( 7 ) == HIGH);
 
 }
 
 void case3() {
+  entrasteauno = true;
+  //  lcd.setCursor( 0, 0 );
+  //  lcd.print( "ALTURA" );
+  do {
+    Wire.begin();
+    lcd.backlight();
+    lcd.init();
+    lcd.clear();
+    lcd.setCursor( 0, 0 );
+    lcd.print( "I.M.C" );
+
+
+
+    lcd.setCursor( 0, 1 );
+    lcd.println("Aquivaimc: ");
+
+    Serial.println("entra imc");
+
+    delay(500);
+  } while (digitalRead( 7 ) == HIGH);
 
 }
 
 void case4() {
+  entrasteauno = true;
+  //  lcd.setCursor( 0, 0 );
+  //  lcd.print( "GRASA" );
+  do {
+    Wire.begin();
+    lcd.backlight();
+    lcd.init();
+    lcd.clear();
+    lcd.setCursor( 0, 0 );
+    lcd.print( "GRASA" );
 
+    lcd.setCursor( 0, 1 );
+    lcd.println("Aquivagrasa: ");
+
+    Serial.println("entra grasa");
+
+    delay(500);
+  } while (digitalRead( 7 ) == HIGH);
 }
 
 
