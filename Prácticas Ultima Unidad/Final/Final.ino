@@ -24,12 +24,12 @@ bool entrasteauno = false;
 
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis = 0;
-const unsigned long period = 2000;  //the value is a number of milliseconds
+const unsigned long period = 5000;  //the value is a number of milliseconds
 
 int selecta = 0;
 
-//bs1=2 bs2=3
-//bs3=4
+//b1=8 b2=9
+//b3=6 b4=7
 
 void setup() {
   Serial.begin(9600);
@@ -114,9 +114,89 @@ void loop() {
   btnS4 = digitalRead( 7 );
 
 
+
+  switch (selecta) {
+    case 1:
+
+
+
+      break;
+    case 2:
+
+
+
+      break;
+    case 3:
+
+
+
+      break;
+    case 4:
+
+      break;
+    case 5:
+
+      break;
+    default:
+      mainmenu();
+  }
+
+
+
+  //aqui acaba loop
 }
 
-void mainmenu() {
-  Serial.println("dsa");
 
+
+
+
+
+
+
+
+
+
+void mainmenu() {
+  currentMillis = millis();  //get the current "time" (actually the number of milliseconds since the program started)
+  if (currentMillis - startMillis >= period)  //test whether the period has elapsed
+  {
+    if (currentmenu == 1) {
+      menu2();
+      currentmenu++;
+    } else if (currentmenu == 2) {
+      menu1();
+      currentmenu = 1;
+    }
+    startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
+  }
+}
+
+void menu1() {
+  selecta = 0;
+
+  Wire.begin();
+  lcd.backlight();
+  lcd.init();
+  lcd.clear();
+
+
+  lcd.setCursor( 0, 0 );
+  lcd.print( "ALTURA" );
+  lcd.setCursor( 0, 1 );
+  lcd.print( "PESO" );
+}
+
+void menu2() {
+  selecta = 0;
+  entrasteauno = false;
+
+  Wire.begin();
+  lcd.backlight();
+  lcd.init();
+  lcd.clear();
+
+  lcd.setCursor( 0, 0 );
+  lcd.print( "I.M.C." );
+  lcd.setCursor( 0, 1 );
+  lcd.print( "%GRASA" );
 }
