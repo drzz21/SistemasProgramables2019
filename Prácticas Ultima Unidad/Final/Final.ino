@@ -81,7 +81,7 @@ void loop() {
   //BOTON 1
   //
 
-  if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
+  if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
     if (currentmenu == 1) {
       selecta = 1;
     } else if (currentmenu == 2) {
@@ -96,7 +96,7 @@ void loop() {
   //BOTON 2
   //
 
-  if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
+  if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
     if (currentmenu == 1) {
       selecta = 2;
     } else if (currentmenu == 2) {
@@ -122,25 +122,26 @@ void loop() {
   switch (selecta) {
     case 1:
       case1();
-
-
       break;
+
+
+      
     case 2:
       case2();
-
-
       break;
+
+      
     case 3:
-
-
       case3();
-
-
       break;
+
+
+      
     case 4:
       case4();
-
       break;
+
+      
 
     case 5:
       if (!entrasteauno) {
@@ -148,8 +149,6 @@ void loop() {
       } else {
         mainmenu();
       }
-
-      case4();
 
       break;
 
@@ -167,8 +166,7 @@ void loop() {
 
 void case1() {
   entrasteauno = true;
-  //  lcd.setCursor( 0, 0 );
-  //  lcd.print( "ALTURA" );
+  
   do {
     Wire.begin();
     lcd.backlight();
@@ -177,14 +175,8 @@ void case1() {
     lcd.setCursor( 0, 0 );
     lcd.print( "ALTURA" );
 
-
-
     lcd.setCursor( 0, 1 );
     lcd.println("Aquivaltura: ");
-
-    Serial.println("entra altura");
-
-
 
     delay(500);
   } while (digitalRead( 6 ) == HIGH);
@@ -192,8 +184,7 @@ void case1() {
 
 void case2() {
   entrasteauno = true;
-  //  lcd.setCursor( 0, 0 );
-  //  lcd.print( "ALTURA" );
+  
   do {
     Wire.begin();
     lcd.backlight();
@@ -202,13 +193,8 @@ void case2() {
     lcd.setCursor( 0, 0 );
     lcd.print( "PESO" );
 
-
-
     lcd.setCursor( 0, 1 );
     lcd.println("Aquivapeso: ");
-    Serial.println("entra peso");
-
-
 
     delay(500);
   } while (digitalRead( 6 ) == HIGH);
@@ -217,8 +203,6 @@ void case2() {
 
 void case3() {
   entrasteauno = true;
-  //  lcd.setCursor( 0, 0 );
-  //  lcd.print( "ALTURA" );
   do {
     Wire.begin();
     lcd.backlight();
@@ -226,8 +210,6 @@ void case3() {
     lcd.clear();
     lcd.setCursor( 0, 0 );
     lcd.print( "I.M.C" );
-
-
 
     lcd.setCursor( 0, 1 );
     lcd.println("Aquivaimc: ");
@@ -241,8 +223,6 @@ void case3() {
 
 void case4() {
   entrasteauno = true;
-  //  lcd.setCursor( 0, 0 );
-  //  lcd.print( "GRASA" );
   do {
     Wire.begin();
     lcd.backlight();
@@ -253,8 +233,6 @@ void case4() {
 
     lcd.setCursor( 0, 1 );
     lcd.println("Aquivagrasa: ");
-
-    Serial.println("entra grasa");
 
     delay(500);
   } while (digitalRead( 6 ) == HIGH);
