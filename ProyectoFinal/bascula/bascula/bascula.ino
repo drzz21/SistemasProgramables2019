@@ -22,7 +22,7 @@ void setup() {
 
 void loop() {
   Serial.print("Peso: ");
-  Serial.print(balanza.get_units(20), 3);
+  Serial.print(balanza.get_units(20), 2);
   Serial.println(" kg");
   delay(500);
 }

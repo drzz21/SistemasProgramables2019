@@ -24,7 +24,7 @@ bool entrasteauno = false;
 
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis = 0;
-const unsigned long period = 5000;  //the value is a number of milliseconds
+const unsigned long period = 3000;  //the value is a number of milliseconds
 
 int selecta = 0;
 
@@ -38,12 +38,12 @@ void setup() {
   lcd.backlight();
   lcd.init();
   lcd.println("<<<S.C.P.>>>");
-  delay(3000);
-  lcd.clear();
-  lcd.setCursor( 0, 0 );
-  lcd.print( "ALTURA" );
-  lcd.setCursor( 0, 1 );
-  lcd.print( "PESO" );
+  delay(2000);
+//  lcd.clear();
+//  lcd.setCursor( 0, 0 );
+//  lcd.print( "MEDIR ALTURA" );
+//  lcd.setCursor( 0, 1 );
+//  lcd.print( "MEDIR PESO." );
 
 
   pinMode(8, INPUT);
@@ -61,10 +61,6 @@ void setup() {
   startMillis = millis();  //initial start time
 
 
-
-
-  lcd.clear();
-
   balanza.set_scale(235970.3014); // Establecemos la escala
 
   balanza.set_scale(26526.59574); // Establecemos la escala
@@ -77,91 +73,91 @@ void setup() {
 
 void loop() {
 
-//  _     _        __ 
-// | |   | |      /_ |
-// | |__ | |_ _ __ | |
-// | '_ \| __| '_ \| |
-// | |_) | |_| | | | |
-// |_.__/ \__|_| |_|_|
+  //  _     _        __
+  // | |   | |      /_ |
+  // | |__ | |_ _ __ | |
+  // | '_ \| __| '_ \| |
+  // | |_) | |_| | | | |
+  // |_.__/ \__|_| |_|_|
 
   if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
     if (currentmenu == 1) {
-      selecta = 1;
+      selecta = 10;
     } else if (currentmenu == 2) {
-      selecta = 3;
+      selecta = 30;
     }
     lcd.clear();
 
   }
   btnS1 = digitalRead( 8 );
 
-//  _     _         ___  
-// | |   | |       |__ \ 
-// | |__ | |_ _ __    ) |
-// | '_ \| __| '_ \  / / 
-// | |_) | |_| | | |/ /_ 
-// |_.__/ \__|_| |_|____|
+  //  _     _         ___
+  // | |   | |       |__ \ 
+  // | |__ | |_ _ __    ) |
+  // | '_ \| __| '_ \  / /
+  // | |_) | |_| | | |/ /_
+  // |_.__/ \__|_| |_|____|
 
   if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
     if (currentmenu == 1) {
-      selecta = 2;
+      selecta = 249;
     } else if (currentmenu == 2) {
-      selecta = 4;
+      selecta = 40;
     }
     lcd.clear();
 
   }
   btnS2 = digitalRead( 9 );
 
-//  _     _         ____  
-// | |   | |       |___ \ 
-// | |__ | |_ _ __   __) |
-// | '_ \| __| '_ \ |__ < 
-// | |_) | |_| | | |___) |
-// |_.__/ \__|_| |_|____/ 
+  //  _     _         ____
+  // | |   | |       |___ \ 
+  // | |__ | |_ _ __   __) |
+  // | '_ \| __| '_ \ |__ <
+  // | |_) | |_| | | |___) |
+  // |_.__/ \__|_| |_|____/
 
-  if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
-    selecta = 5;
+  if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH) {
+    selecta = 50;
 
   }
   btnS3 = digitalRead( 6 );
 
-//               _ _       _     
-//              (_) |     | |    
-//  _____      ___| |_ ___| |__  
-// / __\ \ /\ / / | __/ __| '_ \ 
-// \__ \\ V  V /| | || (__| | | |
-// |___/ \_/\_/ |_|\__\___|_| |_|
+  //               _ _       _
+  //              (_) |     | |
+  //  _____      ___| |_ ___| |__
+  // / __\ \ /\ / / | __/ __| '_ \ 
+  // \__ \\ V  V /| | || (__| | | |
+  // |___/ \_/\_/ |_|\__\___|_| |_|
 
   switch (selecta) {
-    case 1:
+    case 10:
       //altura
       case1();
       break;
 
 
 
-    case 2:
+    case 249:
       //peso
-      case2();
+      case249a();
       break;
 
 
-    case 3:
+    case 30:
       //imc
       case3();
       break;
 
 
 
-    case 4:
-    //grasa
+    case 40:
+      //grasa
       case4();
       break;
 
 
 
-    case 5:
+    case 50:
       if (!entrasteauno) {
 
       } else {
@@ -179,6 +175,33 @@ void loop() {
   //aqui acaba loop
 }
 
+//
+//  _ __   ___  ___  ___
+// | '_ \ / _ \/ __|/ _ \ 
+// | |_) |  __/\__ \ (_) |
+// | .__/ \___||___/\___/
+// | |
+// |_|
+
+void case249a() {
+  entrasteauno = true;
+
+  do {
+    Wire.begin();
+    lcd.backlight();
+    lcd.init();
+    lcd.clear();
+    lcd.setCursor( 0, 0 );
+    lcd.print("Peso");
+
+    lcd.setCursor( 0, 1 );
+    lcd.print(balanza.get_units(20), 3);
+    Serial.println("dasd");
+
+    delay(500);
+  } while (digitalRead( 6 ) == HIGH);
+
+}
 
 
 //        _ _
@@ -200,40 +223,27 @@ void case1() {
     lcd.setCursor( 0, 0 );
     lcd.print( "ALTURA" );
 
-    lcd.setCursor( 0, 1 );
-    lcd.println("Aquivaltura: ");
+    a = sr04.Distance();
+    int b = 192 - a;
+    if (b > 150) {
+      lcd.setCursor( 0, 1 );
+      lcd.print(b);
+      lcd.println("c.m.");
+    }else{
+      lcd.setCursor( 0, 1 );
+      lcd.println("COLOQUESE BIEN");
+    }
+    
+    delay(500);
+
+
 
     delay(500);
   } while (digitalRead( 6 ) == HIGH);
 }
 
 
-//
-//  _ __   ___  ___  ___
-// | '_ \ / _ \/ __|/ _ \ 
-// | |_) |  __/\__ \ (_) |
-// | .__/ \___||___/\___/
-// | |
-// |_|
 
-void case2() {
-  entrasteauno = true;
-
-  do {
-    Wire.begin();
-    lcd.backlight();
-    lcd.init();
-    lcd.clear();
-    lcd.setCursor( 0, 0 );
-    lcd.print( "PESO" );
-
-    lcd.setCursor( 0, 1 );
-    lcd.println("Aquivapeso: ");
-
-    delay(500);
-  } while (digitalRead( 6 ) == HIGH);
-
-}
 
 //  _
 // (_)
@@ -252,12 +262,25 @@ void case3() {
     lcd.setCursor( 0, 0 );
     lcd.print( "I.M.C" );
 
+    
+
     lcd.setCursor( 0, 1 );
-    lcd.println("Aquivaimc: ");
+    lcd.print(balanza.get_units(20), 3);
+    
+//    a = sr04.Distance();
+//    int b = 192 - a;
+//    if (b > 150 && pesito > 1.0) {
+//      int c = (b / 100);
+//      int d = pow(c, 2);
+//
+//      double imc = pesito / d;
+//
+//      lcd.setCursor( 0, 1 );
+//      lcd.print("IMC: ");
+//      lcd.println(imc);
+//    }
 
-    Serial.println("entra imc");
-
-    delay(500);
+    delay(1000);
   } while (digitalRead( 6 ) == HIGH);
 
 }
@@ -318,9 +341,9 @@ void menu1() {
 
 
   lcd.setCursor( 0, 0 );
-  lcd.print( "ALTURA" );
+  lcd.print( "MEDIR ALTURA" );
   lcd.setCursor( 0, 1 );
-  lcd.print( "PESO" );
+  lcd.print( "MEDIR PESO," );
 }
 
 void menu2() {
@@ -333,7 +356,7 @@ void menu2() {
   lcd.clear();
 
   lcd.setCursor( 0, 0 );
-  lcd.print( "I.M.C." );
+  lcd.print( "CALCULAR I.M.C." );
   lcd.setCursor( 0, 1 );
-  lcd.print( "%GRASA" );
+  lcd.print( "CALCULAR %GRASA" );
 }
