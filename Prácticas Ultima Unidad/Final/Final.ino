@@ -77,9 +77,12 @@ void setup() {
 
 void loop() {
 
-  //
-  //BOTON 1
-  //
+//  _     _        __ 
+// | |   | |      /_ |
+// | |__ | |_ _ __ | |
+// | '_ \| __| '_ \| |
+// | |_) | |_| | | | |
+// |_.__/ \__|_| |_|_|
 
   if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH) {
     if (currentmenu == 1) {
@@ -92,9 +95,12 @@ void loop() {
   }
   btnS1 = digitalRead( 8 );
 
-  //
-  //BOTON 2
-  //
+//  _     _         ___  
+// | |   | |       |__ \ 
+// | |__ | |_ _ __    ) |
+// | '_ \| __| '_ \  / / 
+// | |_) | |_| | | |/ /_ 
+// |_.__/ \__|_| |_|____|
 
   if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
     if (currentmenu == 1) {
@@ -107,9 +113,12 @@ void loop() {
   }
   btnS2 = digitalRead( 9 );
 
-  //
-  //BOTON 3
-  //
+//  _     _         ____  
+// | |   | |       |___ \ 
+// | |__ | |_ _ __   __) |
+// | '_ \| __| '_ \ |__ < 
+// | |_) | |_| | | |___) |
+// |_.__/ \__|_| |_|____/ 
 
   if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
     selecta = 5;
@@ -117,31 +126,40 @@ void loop() {
   }
   btnS3 = digitalRead( 6 );
 
-
+//               _ _       _     
+//              (_) |     | |    
+//  _____      ___| |_ ___| |__  
+// / __\ \ /\ / / | __/ __| '_ \ 
+// \__ \\ V  V /| | || (__| | | |
+// |___/ \_/\_/ |_|\__\___|_| |_|
 
   switch (selecta) {
     case 1:
+      //altura
       case1();
       break;
 
 
-      
+
     case 2:
+      //peso
       case2();
       break;
 
-      
+
     case 3:
+      //imc
       case3();
       break;
 
 
-      
+
     case 4:
+    //grasa
       case4();
       break;
 
-      
+
 
     case 5:
       if (!entrasteauno) {
@@ -163,9 +181,9 @@ void loop() {
 
 
 
-//        _ _                   
-//       | | |                  
-//   __ _| | |_ _   _ _ __ __ _ 
+//        _ _
+//       | | |
+//   __ _| | |_ _   _ _ __ __ _
 //  / _` | | __| | | | '__/ _` |
 // | (_| | | |_| |_| | | | (_| |
 //  \__,_|_|\__|\__,_|_|  \__,_|
@@ -173,7 +191,7 @@ void loop() {
 
 void case1() {
   entrasteauno = true;
-  
+
   do {
     Wire.begin();
     lcd.backlight();
@@ -189,18 +207,18 @@ void case1() {
   } while (digitalRead( 6 ) == HIGH);
 }
 
-                       
-//                        
-//  _ __   ___  ___  ___  
+
+//
+//  _ __   ___  ___  ___
 // | '_ \ / _ \/ __|/ _ \ 
 // | |_) |  __/\__ \ (_) |
-// | .__/ \___||___/\___/ 
-// | |                    
-// |_|                    
+// | .__/ \___||___/\___/
+// | |
+// |_|
 
 void case2() {
   entrasteauno = true;
-  
+
   do {
     Wire.begin();
     lcd.backlight();
@@ -217,11 +235,11 @@ void case2() {
 
 }
 
-//  _                
-// (_)               
-//  _ _ __ ___   ___ 
+//  _
+// (_)
+//  _ _ __ ___   ___
 // | | '_ ` _ \ / __|
-// | | | | | | | (__ 
+// | | | | | | | (__
 // |_|_| |_| |_|\___
 
 void case3() {
@@ -244,14 +262,14 @@ void case3() {
 
 }
 
-                           
-//                            
-//   __ _ _ __ __ _ ___  __ _ 
+
+//
+//   __ _ _ __ __ _ ___  __ _
 //  / _` | '__/ _` / __|/ _` |
 // | (_| | | | (_| \__ \ (_| |
 //  \__, |_|  \__,_|___/\__,_|
-//   __/ |                    
-//  |___/   
+//   __/ |
+//  |___/
 
 void case4() {
   entrasteauno = true;
