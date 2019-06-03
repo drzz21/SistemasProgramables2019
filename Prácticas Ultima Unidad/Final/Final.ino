@@ -76,7 +76,11 @@ void setup() {
 }
 
 void loop() {
-  //boton 1
+
+  //
+  //BOTON 1
+  //
+
   if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
     if (currentmenu == 1) {
       selecta = 1;
@@ -88,7 +92,10 @@ void loop() {
   }
   btnS1 = digitalRead( 8 );
 
-  //boton 2
+  //
+  //BOTON 2
+  //
+
   if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
     if (currentmenu == 1) {
       selecta = 2;
@@ -100,23 +107,15 @@ void loop() {
   }
   btnS2 = digitalRead( 9 );
 
-  //SENSOR 3
+  //
+  //BOTON 3
+  //
+
   if ( digitalRead( 6 ) == LOW && btnS3 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
-    selecta = 3;
+    selecta = 5;
 
   }
   btnS3 = digitalRead( 6 );
-
-
-  //  //SENSOR 4
-  //  if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH && currentmenu == 1) {
-  //
-  //    selecta = 4;
-  //
-  //
-  //
-  //  }
-  //  btnS4 = digitalRead( 7 );
 
 
 
@@ -139,6 +138,17 @@ void loop() {
 
       break;
     case 4:
+      case4();
+
+      break;
+
+    case 5:
+      if (!entrasteauno) {
+
+      } else {
+        mainmenu();
+      }
+
       case4();
 
       break;
@@ -177,7 +187,7 @@ void case1() {
 
 
     delay(500);
-  } while (digitalRead( 7 ) == HIGH);
+  } while (digitalRead( 6 ) == HIGH);
 }
 
 void case2() {
@@ -196,11 +206,12 @@ void case2() {
 
     lcd.setCursor( 0, 1 );
     lcd.println("Aquivapeso: ");
+    Serial.println("entra peso");
 
 
 
     delay(500);
-  } while (digitalRead( 7 ) == HIGH);
+  } while (digitalRead( 6 ) == HIGH);
 
 }
 
@@ -224,7 +235,7 @@ void case3() {
     Serial.println("entra imc");
 
     delay(500);
-  } while (digitalRead( 7 ) == HIGH);
+  } while (digitalRead( 6 ) == HIGH);
 
 }
 
@@ -246,7 +257,7 @@ void case4() {
     Serial.println("entra grasa");
 
     delay(500);
-  } while (digitalRead( 7 ) == HIGH);
+  } while (digitalRead( 6 ) == HIGH);
 }
 
 
