@@ -1,4 +1,6 @@
 #include <LiquidCrystal_I2C.h>
+#include <SoftwareSerial.h>
+
 #include <Wire.h>
 #include "HX711.h"
 #include "SR04.h"
@@ -266,6 +268,7 @@ void case3() {
 
     lcd.setCursor( 0, 1 );
     lcd.print(balanza.get_units(20), 3);
+    Serial.print(balanza.get_units(20), 3);
     
 //    a = sr04.Distance();
 //    int b = 192 - a;
