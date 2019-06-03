@@ -76,12 +76,13 @@ void setup() {
 }
 
 void loop() {
+  //boton 1
   if ( digitalRead( 8 ) == LOW && btnS1 == HIGH && digitalRead( 9 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH ) {
     if (currentmenu == 1) {
       selecta = 1;
       //Serial.println("selecta = 1");
     } else if (currentmenu == 2) {
-      selecta = 5;
+      selecta = 3;
       //Serial.println("selecta = 5");
     }
     lcd.clear();
@@ -89,9 +90,16 @@ void loop() {
   }
   btnS1 = digitalRead( 8 );
 
-  //SENSOR 2
+  //boton 2
   if ( digitalRead( 9 ) == LOW && btnS2 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 6 )  == HIGH && digitalRead( 7 )  == HIGH && currentmenu == 1) {
-    selecta = 2;
+    if (currentmenu == 1) {
+      selecta = 2;
+      //Serial.println("selecta = 1");
+    } else if (currentmenu == 2) {
+      selecta = 4;
+      //Serial.println("selecta = 5");
+    }
+    lcd.clear();
 
   }
   btnS2 = digitalRead( 9 );
@@ -102,41 +110,41 @@ void loop() {
 
   }
   btnS3 = digitalRead( 6 );
+  
 
-  //SENSOR 4
-  if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH && currentmenu == 1) {
-
-    selecta = 4;
-
-
-
-  }
-  btnS4 = digitalRead( 7 );
+//  //SENSOR 4
+//  if ( digitalRead( 7 ) == LOW && btnS4 == HIGH && digitalRead( 8 ) == HIGH && digitalRead( 9 )  == HIGH && digitalRead( 6 )  == HIGH && currentmenu == 1) {
+//
+//    selecta = 4;
+//
+//
+//
+//  }
+//  btnS4 = digitalRead( 7 );
 
 
 
   switch (selecta) {
     case 1:
-
+      case1();
 
 
       break;
     case 2:
-
+      case2();
 
 
       break;
     case 3:
-
+      case3();
 
 
       break;
     case 4:
+      case4();
 
       break;
-    case 5:
 
-      break;
     default:
       mainmenu();
   }
@@ -149,7 +157,21 @@ void loop() {
 
 
 
+void case1() {
 
+}
+
+void case2() {
+
+}
+
+void case3() {
+
+}
+
+void case4() {
+
+}
 
 
 
