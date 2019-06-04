@@ -20,11 +20,8 @@ int btnS1 = 0;
 int btnS2 = 0;
 int btnS3 = 0;
 int btnS4 = 0;
-String dae;
+float r;
 
-
-int currentmenu = 1;
-bool entrasteauno = false;
 
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis = 0;
@@ -49,53 +46,53 @@ void setup() {
   startMillis = millis();  //initial start time
 
 
-  balanza.set_scale(235970.3014); // Establecemos la escala
+  balanza.set_scale(35844.98886); // Establecemos la escala
 
 
   balanza.tare(20);  //El peso actual es considerado Tara.
-
+  Wire.begin();
 
 
 }
 
 void loop() {
-  Wire.begin();
-  lcd.backlight();
-  lcd.init();
+
 
   do {
-    dae = "";
 
 
     a = sr04.Distance();
+    delay(50);
+    r = balanza.get_units(20), 3;
     int b = 192 - a;
     if (b > 150) {
 
       lcd.setCursor( 0, 0 );
       lcd.print("Altura:");
       lcd.print(b);
-      dae += b;
+      delay(50);
       Serial.println(b);
+
       lcd.println("c.m.");
     } else {
-      
+
       lcd.setCursor( 0, 0 );
       lcd.println("COLOQUESE BIEN");
     }
 
-    if (balanza.get_units(20), 3 > 0.0) {
+    if (r > 0.0) {
+
 
       lcd.setCursor( 0, 1 );
       lcd.print( "Peso:" );
 
-      lcd.println(balanza.get_units(20), 3);
-      Serial.println(balanza.get_units(20), 3);
+      Serial.println(r);
 
-      dae += (balanza.get_units(20), 3);
+      lcd.println(r);
     } else {
       lcd.setCursor( 0, 1 );
       lcd.print( "Peso:" );
-      lcd.println("0");
+      lcd.println("");
     }
 
     delay(500);
